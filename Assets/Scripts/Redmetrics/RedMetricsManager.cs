@@ -302,6 +302,7 @@ public class RedMetricsManager : MonoBehaviour
             // all web players
             // management of game start for webplayer
             if (Application.isWebPlayer) {
+                    authenticateUser ();
                     connect ();
                     StartCoroutine (waitAndSendStart ());
             
@@ -343,8 +344,13 @@ public class RedMetricsManager : MonoBehaviour
         //TODO: what if connection fails? Here all those events will be sent but the next, later ones won't
     }
 
+    //webplayers
+    public void authenticateUser ()
+    {
+        Application.ExternalCall ("getSignIn");
+    }
 
-    //webplayer
+    //webplayers
     public void connect ()
     {
         if (Application.isWebPlayer) {
